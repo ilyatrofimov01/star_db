@@ -16,3 +16,14 @@
 .person-details .list-group-item .term{
     margin-right: .5rem;
 }
+.did-not-selected{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #c78f22;
+    font-size: 1.5rem;
+}
+.left-arrow{
+    font-size: 2rem;
+}
