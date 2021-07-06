@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SwapiService from '../../services/swapi_service';
 import Spiner from '../spiner';
 import './item-list.css';
 
@@ -27,7 +26,7 @@ export default class ItemList extends Component{
     renderItems(arr) {
         return arr.map((item) => {
           const {id} = item
-          const label = this.props.renderItem(item)
+          const label = this.props.children(item)
           return (
             <li className="list-group-item"
                 key={id}
@@ -39,7 +38,6 @@ export default class ItemList extends Component{
       }
 
     render(){
-
         const {itemList,loading} =  this.state;
         
         

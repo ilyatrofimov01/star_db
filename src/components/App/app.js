@@ -3,8 +3,10 @@ import Header from '../header';
 import RandomPlanet from '../random-planet'
 import ErrorIndicator  from'../error-indicator';
 import PeoplePage from '../people-page';
-import ItemList from '../item-list';
-import PersonDetails from '../person-details';
+import Row from '../Row';
+import ItemDetails from '../item-details'
+import ErrorBoundry from '../error-boundry';  
+
 
 import './app.css'
 import SwapiService from '../../services/swapi_service';
@@ -23,44 +25,29 @@ import SwapiService from '../../services/swapi_service';
    
 
     render(){
+
+        const personDetails = (<ItemDetails itemId ={11}/>);
+        const starshipDetails = (<ItemDetails itemId ={5}/>)
+
         if(this.state.hasError){
             return(<ErrorIndicator/>)
         }
 
         else{
             return(
-            <div className = "app">
-                <Header />
-                <RandomPlanet />
-                <PeoplePage />
+            <ErrorBoundry>
+                <div className = "app">
+                    <Header />
 
-                <div className ="row mb2">
-                    <div className = "col-md-6 p-3">
-                        <ItemList 
-                            onItemSelected = {this.onPersonSelected}
-                            getData={this.swapiService.getAllPlanets}
-                            renderItem={(item) => (<span>{item.name}<button>!</button></span>)}
-                        />
-                    </div>
-                    <div className = "col-md-6">
-                        <PersonDetails personId={this.state.selectedPerson}/>
-                    </div>
-                </div>
+                    {/* <RandomPlanet />
+                    <PeoplePage />   */}
 
-                <div className ="row mb2">
-                    <div className = "col-md-6 p-3">
-                        <ItemList 
-                            onItemSelected = {this.onPersonSelected}
-                            getData={this.swapiService.getAllStarships}
-                            renderItem={(item) => item.name}
-                        />
-                    </div>
-                    <div className = "col-md-6">
-                        <PersonDetails personId={this.state.selectedPerson}/>
-                    </div>
+                    <Row left={personDetails}
+                        right ={starshipDetails}
+                    />
+        
                 </div>
-    
-            </div>
+            </ErrorBoundry>
             )
         }
     
