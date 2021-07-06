@@ -18,16 +18,26 @@ import SwapiService from '../../services/swapi_service';
     state = {
         hasError: false
     }
+
     componentDidCatch(){
         this.setState({hasError:true})
     }
 
-   
+
 
     render(){
+        const {getPerson, getStarship, getPersonImage, getStarshipImage }=this.swapiService
 
-        const personDetails = (<ItemDetails itemId ={11}/>);
-        const starshipDetails = (<ItemDetails itemId ={5}/>)
+        const personDetails = (<ItemDetails 
+            itemId ={11}
+            getData = {getPerson}
+            getImageUrl={getPersonImage}
+        />);
+        const starshipDetails = (<ItemDetails 
+            itemId ={5}
+            getData = {getStarship}
+            getImageUrl={getStarshipImage}
+            />)
 
         if(this.state.hasError){
             return(<ErrorIndicator/>)
