@@ -1,4 +1,4 @@
-import React, { Children, Component } from 'react';
+import React, { Component } from 'react';
 import SwapiService from '../../services/swapi_service';
 
 import './item-details.css'
