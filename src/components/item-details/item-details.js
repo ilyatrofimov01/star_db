@@ -12,7 +12,7 @@ const Record = ({item, field, label}) =>{
 }
 
 
-export{Record};
+export {Record};
 
 export default class ItemDetails extends Component {
 
@@ -64,7 +64,7 @@ export default class ItemDetails extends Component {
             )
         }
 
-        const {id, name, gender, birthYear, eyeColor} = this.state.item
+        const { name } = this.state.item
 
         return(
             <div className = "item-details card">
