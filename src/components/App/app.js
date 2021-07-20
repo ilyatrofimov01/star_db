@@ -25,13 +25,8 @@ import {
     componentDidCatch(){
         this.setState({hasError:true})
     }
-
-
-
+    
     render(){
-
-
-
 
         if(this.state.hasError){
             return(<ErrorIndicator/>)
@@ -47,15 +42,10 @@ import {
                 <PersonDetails itemId = {11}/>
                 <PlanetDetails itemId = {5}/>
                 <StarshipDetails itemId = {9}/>
-                <PersonList>
-                    {({name}) => <span>{name}</span>}
-                </PersonList> 
-                <StarshipList>
-                    {({name}) => <span>{name}</span>}
-                </StarshipList> 
-                <PlanetList>
-                    {({name}) => <span>{name}</span>}
-                </PlanetList> 
+
+                <PersonList/>
+                <StarshipList/>
+                <PlanetList/> 
 
                 
                     {/* <RandomPlanet />

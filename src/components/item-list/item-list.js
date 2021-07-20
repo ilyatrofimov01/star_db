@@ -26,8 +26,4 @@ import './item-list.css';
     }
 
 
-
-
-
-
 export default ItemList
