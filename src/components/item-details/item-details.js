@@ -7,7 +7,7 @@ const Record = ({item, field, label}) =>{
    return( 
         <li className = "list-group-item">
             <span className ="term ">{label}</span>
-            <span> {item [field]} </span>
+            <span> {item[field]} </span>
         </li>)
 }
 
@@ -28,7 +28,9 @@ export default class ItemDetails extends Component {
     }
 
     componentDidUpdate(prevProps){
-        if (this.props.itemId !== prevProps.itemId){
+        if (this.props.itemId !== prevProps.itemId || 
+            this.props.getData !== prevProps.getData || 
+            this.props.getImageUrl !== prevProps.getImapeUrl ){
             this.updateItem()
         }
     }
@@ -56,9 +58,6 @@ export default class ItemDetails extends Component {
                 <div className='did-not-selected'>
                     <span>
                         Choose Your Character from list 
-                    </span>
-                    <span className='left-arrow'>
-                        &larr;
                     </span>
                 </div>
             )

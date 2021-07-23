@@ -3,32 +3,34 @@ import Header from '../header';
 import RandomPlanet from '../random-planet'
 import ErrorIndicator  from'../error-indicator';
 import ErrorBoundry from '../error-boundry';  
-import './app.css'
 import { SwapiServiceProvider } from '../swapi-service-context';
-import PersonDetails from '../sw-components/person-details'
-import PlanetDetails from '../sw-components/planet-details';
-import StarshipDetails from '../sw-components/starship-details'
-
-
 import SwapiService from '../../services/swapi_service';
-
-import { 
-    PersonList,
-    PlanetList,
-    StarshipList, 
-} from '../sw-components';
+import './app.css'
+import { PeoplePage, PlanetsPage, StarshipsPage } from '../pages';
 
 
  export default class App extends Component  {
 
-    swapiService = new SwapiService();
 
     state = {
-        hasError: false
+        hasError: false,
+        swapiService: new SwapiService(),
     }
 
     componentDidCatch(){
         this.setState({hasError:true})
+    }
+
+    onServiceChange = () => {
+        this.setState(({swapiService}) => {
+            const Service = swapiService instanceof SwapiService ? SwapiService : SwapiService;
+
+            console.log('switched to ',Service.name)
+
+            return {
+                swapiService: new Service()
+            }
+        })
     }
 
     render(){
@@ -41,22 +43,14 @@ import {
             
             return(
             <ErrorBoundry>
-                <SwapiServiceProvider value = {this.swapiService}>
+                <SwapiServiceProvider value = {this.state.swapiService}>
                     <div className = "app">
-                        <Header />
+                        <Header onServiceChange = {this.onServiceChange} />
+                        <RandomPlanet />
 
-                    <StarshipDetails itemId = {9}/>
-                    <PersonDetails itemId = {11}/>
-                    <PlanetDetails itemId = {5}/>
-                    
-
-                    <PersonList/>
-                    <StarshipList/>
-                    <PlanetList/> 
-
-                    
-                        {/* <RandomPlanet />
-                        <PeoplePage />   */}
+                        <PeoplePage/>
+                        <PlanetsPage/>
+                        <StarshipsPage/>
  
             
                     </div>
