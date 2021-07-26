@@ -46,7 +46,7 @@ import { PeoplePage, PlanetsPage, StarshipsPage } from '../pages';
                 <SwapiServiceProvider value = {this.state.swapiService}>
                     <div className = "app">
                         <Header onServiceChange = {this.onServiceChange} />
-                        <RandomPlanet />
+                        <RandomPlanet updateInterval ={3500}/>
 
                         <PeoplePage/>
                         <PlanetsPage/>
