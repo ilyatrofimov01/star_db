@@ -42,7 +42,7 @@ const withData = (View) => {
           return <Spiner/>
       }
       if (error){
-        <ErrorIndicator/>
+        return <ErrorIndicator/>
       }
       
       return <View {...this.props} data ={data}/>
